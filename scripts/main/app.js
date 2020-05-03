@@ -35,7 +35,8 @@ const app = {
           break;
       }
     } else {
-      throw new Error('Player não reconhecido');
+      if (typeof browserProtectedPlayer !== 'undefined')
+        this.player = browserProtectedPlayer;
     }
   },
 };

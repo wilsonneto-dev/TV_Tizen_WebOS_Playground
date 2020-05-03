@@ -1,0 +1,12 @@
+body {
+  text-align: center;
+  color: white;
+  background-color: gray;
+  margin: 0;
+  padding: 0;
+}
+
+video,
+object {
+  width: 450px;
+}

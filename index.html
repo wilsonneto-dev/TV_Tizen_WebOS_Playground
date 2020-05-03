@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TV App</title>
+
+    <!-- GENERAL -->
+    <script src="/scripts/main/enums.js"></script>
+    <script src="/scripts/main/app.js"></script>
+
+    <!-- tizen - player -->
+    <script src="/scripts/platforms/tizen/protectedPlayer.js"></script>
+    <script type="text/javascript" src="$WEBAPIS/webapis/webapis.js"></script>
+
+    <!-- webos - player -->
+    <script src="/scripts/platforms/webos/webOSTV.js"></script>
+    <script src="/scripts/platforms/webos/protectedPlayer.js"></script>
+
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body>
+    <div id="playerWrapper"></div>
+    <input type="button" onclick="window.app.player.play();" value="play" />
+    <input type="button" onclick="window.app.player.pause();" value="pause" />
+    <div id="log_stash"></div>
+
+    <script>
+      window.app.verifySystem();
+      window.app.preparePlayer();
+
+      uiPlayerWrapper = document.getElementById('playerWrapper');
+      window.app.player.appendPlayer(uiPlayerWrapper);
+
+      const playbackInfo = {
+        dash:
+          'https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/mpds/11331.mpd',
+        hls:
+          'https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/m3u8s/11331.m3u8',
+        smooth:
+          'https://test.playready.microsoft.com/smoothstreaming/SSWSS720H264/SuperSpeedway_720.ism/manifest',
+        drm: {
+          widevine: {
+            LA_URL: 'https://widevine-proxy.appspot.com/proxy',
+          },
+          playready: {
+            LA_URL:
+              'https://playready.directtaps.net/pr/svc/rightsmanager.asmx?PlayRight=1&ContentKey=EAtsIJQPd5pFiRUrV9Layw==',
+          },
+        },
+      };
+
+      window.app.player.load(playbackInfo);
+      window.app.player.play();
+    </script>
+  </body>
+</html>

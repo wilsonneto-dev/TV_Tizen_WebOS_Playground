@@ -27,7 +27,7 @@ browserProtectedPlayer = {
       .load(playbackInfo.dash)
       .then(
         function () {
-          console.log('The video has now been loaded!');
+          console.log('The video has now been loaded!!');
         }.bind(this)
       )
       .catch(this.errorHandler.bind(this));
